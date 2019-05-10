@@ -1,0 +1,46 @@
+# file contains a hierarchy of the workflow with either choices or end action, which is update_ticket
+# Choice keys need to be unique to ensure correct step is found
+--- 
+label: "Out of date workflow root"
+search: "tags:corpeng_primary_remediation out of date status:open status:new group:support:support"
+message: |-
+    Hi! 1 or more of your computers have not checked into our systems in the last 30 days.
+    The computer with asset {barcode} is not checking in.
+    This may be because of a number of reasons.
+    One common reason is possibly this is an older computer not being used.
+    Is this your current or old computer?
+choices: 
+  current: 
+    choices: 
+      not_connecting: 
+        label: "Not connecting"
+        message: "We'll look into this for you"
+        update_ticket: "User tried to connect to Dropbox network but they couldn't connect"
+      reconnected: 
+        label: "It's connected"
+        message: "Perfect we’ll double check things on our end and get back to you if needed"
+        update_ticket: "User has connected their current laptop to the Dropbox network"
+    label: Current
+    message: |-
+        No problem essentially, all we need to do for these remediations is turn on your laptop(s) and connect them to the Dropbox network for at least 30 minutes but lets say an hour to be safe ;)
+        Let me know when the laptop is connected to the Dropbox network?
+  old: 
+    choices: 
+      need: 
+        choices: 
+          connected: 
+            label: Connected
+            message: "Well done! Thanks!"
+            update_ticket: "User has turned on old laptop for 1 hour and should be fine now. Please double check."
+        label: "Need it"
+        message: |-
+            No problem essentially, all we need to do for these remediations is turn on your laptop(s) and connect them to the Dropbox network for at least 30 minutes but lets say an hour to be safe ;)
+            Let me know when the laptop is connected to the Dropbox network?
+      return: 
+        label: "Return it"
+        message: |-
+            Perfect Just pop over to your local dropstop and if you don’t mind let them know it was a remeditation.
+            Thank you have a great day.
+        update_ticket: "User is going to return old laptop back"
+    label: Old
+    message: "Do you need this computer or would you like to return it?"
