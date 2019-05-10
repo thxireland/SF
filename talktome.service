@@ -1,0 +1,11 @@
+[Unit]
+Description=Talktome app
+
+[Service]
+WorkingDirectory=/home/said/src/talktome
+ExecStart=/home/said/src/talktome/venv/bin/gunicorn --reload -b 127.0.0.1:3000 talktome:app
+EnvironmentFile=/home/said/secrets/talktome.env
+
+[Install]
+WantedBy=multi-user.target
+

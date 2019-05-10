@@ -1,0 +1,9 @@
+[Unit]
+Description=Ngrok
+
+[Service]
+ExecStart=/home/said/bin/ngrok http 3000
+
+[Install]
+WantedBy=multi-user.target
+
