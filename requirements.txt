@@ -20,7 +20,7 @@ ptyprocess==0.5
 pyee==5.0.0
 python-dateutil==2.8.0
 pytz==2018.9
-PyYAML==5.1
+PyYAML==5.4
 requests==2.21.0
 simplegeneric==0.8.1
 six==1.12.0
